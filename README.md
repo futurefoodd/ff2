@@ -83,3 +83,4 @@ chore/<description> — tooling, dependencies, CI/CD
 docs/<description> — documentation
 refactor/<description> — internal restructuring
 hotfix/<description> — urgent production fix
+
