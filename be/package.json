@@ -7,10 +7,10 @@
     "dev": "tsx watch src/server.ts",
     "build": "tsc -p tsconfig.json && tsc-alias -p tsconfig.json",
     "start": "node dist/server.js",
-    "test": "vitest",
     "test:ui": "vitest --ui",
-    "test:run": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test": "vitest --config src/vite.config.ts",
+    "test:run": "vitest run --config src/vite.config.ts",
+    "test:coverage": "vitest run --config src/vite.config.ts --coverage"
   },
   "keywords": [],
   "author": "",
@@ -32,6 +32,7 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^26.2.0",
     "@vitest/coverage-v8": "4.1.11",
+    "tsc-alias": "^1.9.5",
     "tsx": "^4.23.12",
     "typescript": "^7.0.2",
     "vitest": "^4.1.11"
