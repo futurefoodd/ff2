@@ -79,8 +79,8 @@ jobs:
       - name: Install backend dependencies
         run: npm ci
 
-      - name: Run Stripe payment tests
-        run: npm run test:run -- src/routes/apiStripe.test.ts
+      # - name: Run Stripe payment tests
+      #   run: npm run test:run -- src/routes/apiStripe.test.ts
 
       - name: Run all backend tests with coverage
         run: npm run test:coverage
