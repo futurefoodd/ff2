@@ -2,8 +2,8 @@ import type { RouteObject } from "react-router-dom"
 
 import { App, HomePage } from "@/App"
 import { BioTherapeuticsNeurodivergencePage } from "@/pages/bio-therapeutics-neurodivergence-page"
-// import { CartPage } from "@/pages/cart-page"
-// import { CheckoutPage } from "@/pages/checkout-page"
+import { CartPage } from "@/pages/cart-page"
+import { CheckoutPage } from "@/pages/checkout-page"
 import { PageNotFound } from "@/pages/page-not-found"
 import { ConsultationsPage } from "@/pages/consultations-page"
 import { DoctorsForumPage } from "@/pages/doctors-forum-page"
@@ -30,8 +30,8 @@ export const routeTree = [
         path: "gut-brain-axis-probiotics",
         Component: GutBrainAxisProbioticsPage,
       },
-      // { path: "cart", Component: CartPage },
-      // { path: "checkout", Component: CheckoutPage },
+      { path: "cart", Component: CartPage },
+      { path: "checkout", Component: CheckoutPage },
       { path: "consultations", Component: ConsultationsPage },
       { path: "doctors-forum", Component: DoctorsForumPage },
       { path: "dual-therapy", Component: DualTherapyPage },

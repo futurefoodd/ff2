@@ -9,6 +9,7 @@ import { GlobalRefreshingIndicator } from "@/components/global-refreshing-indica
 import { ThemeProvider } from "@/components/theme-provider.tsx"
 import { CartProvider } from "@/contexts/cart-context"
 import { routeTree } from "@/route-tree"
+import { Toaster } from "@/components/ui/sonner"
 
 const queryClient = new QueryClient()
 const router = createBrowserRouter(routeTree)
@@ -19,7 +20,9 @@ createRoot(document.getElementById("root")!).render(
       <QueryClientProvider client={queryClient}>
         <CartProvider>
           <RouterProvider router={router} />
+s
         </CartProvider>
+                  <Toaster />
         <GlobalRefreshingIndicator />
       </QueryClientProvider>
     </ThemeProvider>

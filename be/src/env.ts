@@ -15,8 +15,9 @@ export const env = {
   baseUrl:
     process.env.BASE_URL + ":" + process.env.PORT || "http://localhost:8443",
   stripe_baseUrl: process.env.STRIPE_BASE_URL || "https://api.stripe.com",
-  turnstileSecretKey:
-    process.env.TURNSTILE_SECRET_KEY ||
+  stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY || "",
+  stripeSecretKey: process.env.STRIPE_SECRET_KEY || "",
+  turnstileSecretKey: process.env.TURNSTILE_SECRET_KEY ||
     (process.env.NODE_ENV === "production"
       ? ""
       : "1x0000000000000000000000000000000AA"),
