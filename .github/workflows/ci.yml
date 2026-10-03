@@ -4,11 +4,9 @@ on:
   pull_request:
     branches:
       - main
-      - staging
   push:
     branches:
       - main
-      - staging
 
 permissions:
   contents: read
@@ -123,7 +121,6 @@ jobs:
           images: ghcr.io/${{ github.repository_owner }}/ff2-backend
           tags: |
             type=sha,format=long
-            type=raw,value=staging,enable=${{ github.ref == 'refs/heads/staging' }}
             type=raw,value=production,enable=${{ github.ref == 'refs/heads/main' }}
 
       - name: Build image and publish after merge
