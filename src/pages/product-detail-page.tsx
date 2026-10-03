@@ -29,6 +29,8 @@ import {
 import { useProduct } from "@/hooks/use-products"
 import { ProductDetailSkeleton } from "@/components/product-skeletons"
 import { useCart } from "@/contexts/cart-context"
+import type { ProductDetailResponse } from "@/types/product-responses"
+import { toast } from "sonner"
 
 function GalleryPlaceholder({ label }: { label: string }) {
   return (
@@ -59,6 +61,12 @@ function ProductDetail({ slug }: { slug: string | undefined }) {
   const { addItem } = useCart()
   const [quantity, setQuantity] = useState(1)
   const [isAdded, setIsAdded] = useState(false)
+
+  const handleAddToCart = (product: ProductDetailResponse) => {
+  addItem(product, quantity)
+  setIsAdded(true)
+  toast(`${quantity} items has been Added to cart`)
+}
 
   if (isPending || (error && product === undefined)) {
     return (
@@ -201,10 +209,7 @@ function ProductDetail({ slug }: { slug: string | undefined }) {
                 </div>
                 <Button
                   className="min-w-40"
-                  onClick={() => {
-                    addItem(product, quantity)
-                    setIsAdded(true)
-                  }}
+                  onClick={()=>handleAddToCart(product)}
                 >
                   <ShoppingCart />
                   {isAdded ? `Added (${quantity})` : "Add to cart"}
