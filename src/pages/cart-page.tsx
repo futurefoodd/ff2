@@ -1,7 +1,6 @@
 import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react"
 import { Link } from "react-router-dom"
 
-import { TopNavigation } from "@/components/top-navigation"
 import { Button, buttonVariants } from "@/components/ui/button"
 import {
   Card,
@@ -19,7 +18,6 @@ export function CartPage() {
 
   return (
     <div className="min-h-svh bg-background">
-      <TopNavigation />
       <main className="mx-auto max-w-7xl px-6 py-16 lg:px-12">
         <h1 className="text-4xl font-semibold tracking-tight">Your cart</h1>
         {items.length === 0 ? (

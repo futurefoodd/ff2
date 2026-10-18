@@ -4,7 +4,6 @@ import { Link, Outlet } from "react-router-dom"
 
 import { CookieConsent } from "@/components/cookie-consent"
 import { DocumentTranslations } from "@/components/document-translations"
-import { TopNavigation } from "@/components/top-navigation"
 import { FeaturedProduct } from "@/components/featured-product"
 import {
   Accordion,
@@ -238,7 +237,6 @@ function TestimonialsCarousel() {
 export function HomePage() {
   return (
     <div className="min-h-svh bg-background">
-      <TopNavigation />
       <main>
         <section
           id="home"

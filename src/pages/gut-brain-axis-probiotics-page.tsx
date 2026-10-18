@@ -1,4 +1,3 @@
-import { TopNavigation } from "@/components/top-navigation"
 
 const eventDates = [
   ["Oct 27th, 2024", "Utara Dietetics, Southern Park"],
@@ -13,7 +12,6 @@ const eventDates = [
 export function GutBrainAxisProbioticsPage() {
   return (
     <div className="min-h-svh bg-background text-foreground">
-      <TopNavigation />
       <main className="mx-auto max-w-3xl px-6 py-14 lg:py-20">
         <article>
           <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">

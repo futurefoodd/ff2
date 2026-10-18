@@ -1,7 +1,5 @@
 import { ImageIcon } from "lucide-react"
 import { Link } from "react-router-dom"
-
-import { TopNavigation } from "@/components/top-navigation"
 import { ProductsSkeleton } from "@/components/product-skeletons"
 import { Button } from "@/components/ui/button"
 import { useProducts } from "@/hooks/use-products"
@@ -30,7 +28,6 @@ export function ProductsPage() {
 
   return (
     <div className="min-h-svh bg-background">
-      <TopNavigation />
       <main className="mx-auto max-w-7xl px-6 py-16 lg:px-12">
         <div className="max-w-2xl">
           <p className="text-sm font-semibold tracking-wide text-primary uppercase">

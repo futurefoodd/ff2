@@ -23,6 +23,39 @@ const en = {
     upskill: "Upskill",
     tour: "Tour",
   },
+  auth: {
+    returnHome: "Return to Future Foods home",
+    email: "Email",
+    emailPlaceholder: "you@example.com",
+    password: "Password",
+    confirmPassword: "Confirm password",
+    continueWith: "Or continue with",
+    legal:
+      "By continuing, you agree to our <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>.",
+    signIn: {
+      title: "Welcome back",
+      description: "Sign in with your Apple or Google account",
+      apple: "Sign in with Apple",
+      google: "Sign in with Google",
+      forgotPassword: "Forgot your password?",
+      submit: "Sign in",
+      noAccount: "Don’t have an account? <signUp>Sign up</signUp>",
+    },
+    signUp: {
+      title: "Create your account",
+      description: "Enter your email below to create your account",
+      emailDescription:
+        "We’ll use this to contact you. We will not share your email with anyone else.",
+      passwordHint: "Must be at least 8 characters long.",
+      submit: "Create account",
+      apple: "Sign up with Apple",
+      google: "Sign up with Google",
+      meta: "Sign up with Meta",
+      hasAccount: "Already have an account? <signIn>Sign in</signIn>",
+      imageAlt:
+        "Roselle, soursop, grains, and fruit pastilles arranged as a botanical wellness still life",
+    },
+  },
 }
 
 function getInitialLanguage(): SupportedLanguage {

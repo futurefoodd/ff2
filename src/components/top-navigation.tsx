@@ -1,6 +1,6 @@
 import {
   Menu,
-  // ShoppingCart
+  ShoppingCart
 } from "lucide-react"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -9,9 +9,9 @@ import { Link } from "react-router-dom"
 import { LanguageSelect } from "@/components/language-select"
 import {
   Button,
-  // buttonVariants
+  buttonVariants
 } from "@/components/ui/button"
-// import { useCart } from "@/contexts/cart-context"
+import { useCart } from "@/contexts/cart-context"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -44,7 +44,7 @@ function navigationTo(item: (typeof navigationItems)[number]) {
 
 export function TopNavigation() {
   const { t } = useTranslation()
-  // const { itemCount } = useCart()
+  const { itemCount } = useCart()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false)
@@ -190,7 +190,7 @@ export function TopNavigation() {
                   ))}
                 </ul>
               </nav>
-              {/* <div className="grid gap-2 border-t p-3">
+              <div className="grid gap-2 border-t p-3">
                 <Link
                   to="/cart"
                   className={buttonVariants({ variant: "ghost" })}
@@ -212,10 +212,10 @@ export function TopNavigation() {
                 >
                   {t("navigation.signUp")}
                 </Link>
-              </div> */}
+              </div>
             </SheetContent>
           </Sheet>
-          {/* <div className="hidden items-center gap-1 md:flex">
+          <div className="hidden items-center gap-1 md:flex">
             <Link
               to="/cart"
               aria-label="Cart"
@@ -235,7 +235,7 @@ export function TopNavigation() {
             <Link to="/sign-up" className={buttonVariants({ size: "sm" })}>
               {t("navigation.signUp")}
             </Link>
-          </div> */}
+          </div>
           <LanguageSelect />
         </div>
       </div>

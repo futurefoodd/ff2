@@ -22,6 +22,36 @@
     "upskill": "技能提升",
     "tour": "导览"
   },
+  "auth": {
+    "returnHome": "返回 Future Foods 首页",
+    "email": "电子邮箱",
+    "emailPlaceholder": "you@example.com",
+    "password": "密码",
+    "confirmPassword": "确认密码",
+    "continueWith": "或使用以下方式继续",
+    "legal": "继续即表示您同意我们的<terms>服务条款</terms>和<privacy>隐私政策</privacy>。",
+    "signIn": {
+      "title": "欢迎回来",
+      "description": "使用您的 Apple 或 Google 账户登录",
+      "apple": "使用 Apple 登录",
+      "google": "使用 Google 登录",
+      "forgotPassword": "忘记密码？",
+      "submit": "登录",
+      "noAccount": "还没有账户？<signUp>注册</signUp>"
+    },
+    "signUp": {
+      "title": "创建您的账户",
+      "description": "在下方输入电子邮箱以创建账户",
+      "emailDescription": "我们将使用此邮箱与您联系，不会将其分享给任何其他人。",
+      "passwordHint": "密码必须至少包含 8 个字符。",
+      "submit": "创建账户",
+      "apple": "使用 Apple 注册",
+      "google": "使用 Google 注册",
+      "meta": "使用 Meta 注册",
+      "hasAccount": "已经有账户？<signIn>登录</signIn>",
+      "imageAlt": "洛神花、刺果番荔枝、谷物和水果软糖组成的植物健康静物"
+    }
+  },
   "dynamic": {
     "decreaseQuantity": "减少 {{name}} 的数量",
     "increaseQuantity": "增加 {{name}} 的数量",
