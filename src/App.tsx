@@ -52,12 +52,14 @@ const announcements = [
   {
     image: "/nutrition-future.jpeg",
     alt: "Community outreach & Consumer Education for young Smokers & Vapers",
+    date: "",
     title: "Community outreach & Consumer Education for young Smokers & Vapers",
     description: "Be A Part of Our Nation's Future.",
   },
   {
     image: "/product-trial.jpeg",
     alt: "Supervised product trial",
+    date: "",
     title: "Supervised product trial",
     description:
       "Fast Absorbing Organic Nutrients for Smokers & Vapers",
