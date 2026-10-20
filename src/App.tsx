@@ -50,19 +50,19 @@ const heroSlides = [
 
 const announcements = [
   {
-    image: "/rotary2.jpeg",
-    alt: "Health Begins in Your Gut talk with Dr Keshu A., hosted by Rotary Club of Damansara Uptown",
-    date: "29 Aug 2026",
-    title: "A fresh start for your wellness routine",
-    description: "Health Begins In Your Gut - Rotary Club of Damansara Uptown.",
+    image: "/nutrition-future.jpeg",
+    alt: "Community outreach & Consumer Education for young Smokers & Vapers",
+    date: "",
+    title: "Community outreach & Consumer Education for young Smokers & Vapers",
+    description: "Be A Part of Our Nation's Future.",
   },
   {
-    image: "/nice.jpeg",
-    alt: "Sepri Natural Products company profile for the NICE 26 expo",
-    date: "26-28 Aug 2026",
-    title: "NICE 26 - National Innovation and Commercialisation Expo",
+    image: "/product-trial.jpeg",
+    alt: "Supervised product trial",
+    date: "",
+    title: "Supervised product trial",
     description:
-      "Visit us at Sepri Natural Products' booth, 26-28 August 2026, 9:00 AM - 5:00 PM daily at Kuala Lumpur Convention Centre (KLCC). Theme: Mission to Market Malaysia to the World - Matching Investors.",
+      "Fast Absorbing Organic Nutrients for Smokers & Vapers",
   },
 ]
 
