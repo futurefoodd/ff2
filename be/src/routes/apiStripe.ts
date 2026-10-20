@@ -1,17 +1,16 @@
 import { Router } from "express"
-// import { HttpError } from "../middleware/errorHandler.js"
 import type { Request, Response } from "express"
-import { asyncHandler } from "@utils/asyncHandler.js"
 import { StripeClient } from "@client/stripeClient.js"
 import {env} from "../env.js"
+// import { HttpError } from "../middleware/errorHandler.js"
 
 export const stripeRouter = Router()
 
-const BASE_URL = env.baseUrl;
+const BASE_URL = env.baseUrl
 
 stripeRouter.post(
   "/create-checkout-session",
-  asyncHandler(async (req: Request, res: Response) => {
+  async (req: Request, res: Response) => {
     const session = await StripeClient.checkout.sessions.create({
       line_items: [
         {
@@ -27,5 +26,5 @@ stripeRouter.post(
     })
 
     res.redirect(303, session.url?? '')
-  })
+  }
 )
