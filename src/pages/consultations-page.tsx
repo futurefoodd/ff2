@@ -1,7 +1,5 @@
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile"
 import { useRef, useState } from "react"
-
-import { TopNavigation } from "@/components/top-navigation"
 import { Button } from "@/components/ui/button"
 import { env } from "@/config/env"
 import {
@@ -683,7 +681,6 @@ export function ConsultationsPage() {
 
   return (
     <div className="min-h-svh bg-background text-foreground">
-      <TopNavigation />
       <main className="mx-auto max-w-4xl px-6 py-12 lg:py-16">
         <header className="max-w-2xl">
           <h1 className="mt-5 text-3xl font-semibold tracking-tight">

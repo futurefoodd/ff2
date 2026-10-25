@@ -1,17 +1,17 @@
-import {
-  Menu,
-  // ShoppingCart
-} from "lucide-react"
+import { LogOut, Menu, ShoppingCart, UserRound } from "lucide-react"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 
 import { LanguageSelect } from "@/components/language-select"
 import {
-  Button,
-  // buttonVariants
-} from "@/components/ui/button"
-// import { useCart } from "@/contexts/cart-context"
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Button, buttonVariants } from "@/components/ui/button"
+import { useCart } from "@/contexts/cart-context"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -27,6 +27,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { useAuth } from "@/contexts/auth-context"
 
 const navigationItems = [
   "home",
@@ -44,7 +45,8 @@ function navigationTo(item: (typeof navigationItems)[number]) {
 
 export function TopNavigation() {
   const { t } = useTranslation()
-  // const { itemCount } = useCart()
+  const { itemCount } = useCart()
+  const { user, signOut } = useAuth()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false)
@@ -69,64 +71,66 @@ export function TopNavigation() {
 
   return (
     <header className="border-b bg-background">
-      <div className="mx-auto flex min-h-18 max-w-7xl items-center gap-x-4 px-4 py-3 sm:px-6">
-        <Link
-          to="/"
-          aria-label={t("navigation.company")}
-          className="flex items-center gap-2.5"
-        >
-          <img
-            src="/ff_icon.png"
-            alt="Future Foods logo"
-            className="size-9 rounded-md object-cover"
-          />
-        </Link>
+      <div className="mx-auto flex min-h-18 max-w-7xl items-center justify-between gap-x-4 px-4 py-3 sm:px-6">
+        <div className="flex min-w-0 flex-1 items-center gap-x-4">
+          <Link
+            to="/"
+            aria-label={t("navigation.company")}
+            className="flex shrink-0 items-center gap-2.5"
+          >
+            <img
+              src="/ff_icon.png"
+              alt="Future Foods logo"
+              className="size-9 rounded-md object-cover"
+            />
+          </Link>
 
-        <NavigationMenu
-          aria-label={t("navigation.primary")}
-          className="hidden flex-1 overflow-visible md:flex"
-        >
-          <NavigationMenuList className="min-w-max justify-start gap-1 text-muted-foreground md:justify-center">
-            {navigationItems.slice(0, 3).map((item) => (
-              <NavigationMenuItem key={item}>
-                <NavigationMenuLink
-                  className="px-3.5 py-2 hover:text-foreground"
-                  render={<Link to={navigationTo(item)} />}
-                >
-                  {t(`navigation.${item}`)}
-                </NavigationMenuLink>
+          <NavigationMenu
+            aria-label={t("navigation.primary")}
+            className="hidden flex-1 overflow-visible md:flex"
+          >
+            <NavigationMenuList className="min-w-max justify-start gap-1 text-muted-foreground md:justify-center">
+              {navigationItems.slice(0, 3).map((item) => (
+                <NavigationMenuItem key={item}>
+                  <NavigationMenuLink
+                    className="px-3.5 py-2 hover:text-foreground"
+                    render={<Link to={navigationTo(item)} />}
+                  >
+                    {t(`navigation.${item}`)}
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              ))}
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="px-3.5 text-muted-foreground hover:text-foreground">
+                  {t("navigation.dietetics")}
+                </NavigationMenuTrigger>
+                <NavigationMenuContent className="w-80 p-1.5">
+                  <ul>
+                    {dieteticsItems.map((item) => (
+                      <li key={item.to}>
+                        <NavigationMenuLink render={<Link to={item.to} />}>
+                          {item.label}
+                        </NavigationMenuLink>
+                      </li>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
               </NavigationMenuItem>
-            ))}
-            <NavigationMenuItem>
-              <NavigationMenuTrigger className="px-3.5 text-muted-foreground hover:text-foreground">
-                {t("navigation.dietetics")}
-              </NavigationMenuTrigger>
-              <NavigationMenuContent className="w-80 p-1.5">
-                <ul>
-                  {dieteticsItems.map((item) => (
-                    <li key={item.to}>
-                      <NavigationMenuLink render={<Link to={item.to} />}>
-                        {item.label}
-                      </NavigationMenuLink>
-                    </li>
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            {navigationItems.slice(3).map((item) => (
-              <NavigationMenuItem key={item}>
-                <NavigationMenuLink
-                  className="px-3.5 py-2 hover:text-foreground"
-                  render={<Link to={navigationTo(item)} />}
-                >
-                  {t(`navigation.${item}`)}
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-            ))}
-          </NavigationMenuList>
-        </NavigationMenu>
+              {navigationItems.slice(3).map((item) => (
+                <NavigationMenuItem key={item}>
+                  <NavigationMenuLink
+                    className="px-3.5 py-2 hover:text-foreground"
+                    render={<Link to={navigationTo(item)} />}
+                  >
+                    {t(`navigation.${item}`)}
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
+        </div>
 
-        <div className="ml-auto flex items-center gap-1.5 md:ml-0">
+        <div className="flex shrink-0 items-center gap-1.5">
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger
               render={
@@ -190,7 +194,7 @@ export function TopNavigation() {
                   ))}
                 </ul>
               </nav>
-              {/* <div className="grid gap-2 border-t p-3">
+              <div className="grid gap-2 border-t p-3">
                 <Link
                   to="/cart"
                   className={buttonVariants({ variant: "ghost" })}
@@ -198,24 +202,28 @@ export function TopNavigation() {
                 >
                   <ShoppingCart /> Cart{itemCount > 0 && ` (${itemCount})`}
                 </Link>
-                <Link
-                  to="/sign-in"
-                  className={buttonVariants({ variant: "outline" })}
-                  onClick={closeMobileMenu}
-                >
-                  {t("navigation.signIn")}
-                </Link>
-                <Link
-                  to="/sign-up"
-                  className={buttonVariants()}
-                  onClick={closeMobileMenu}
-                >
-                  {t("navigation.signUp")}
-                </Link>
-              </div> */}
+                {!user && (
+                  <>
+                    <Link
+                      to="/sign-in"
+                      className={buttonVariants({ variant: "outline" })}
+                      onClick={closeMobileMenu}
+                    >
+                      {t("navigation.signIn")}
+                    </Link>
+                    <Link
+                      to="/sign-up"
+                      className={buttonVariants()}
+                      onClick={closeMobileMenu}
+                    >
+                      {t("navigation.signUp")}
+                    </Link>
+                  </>
+                )}
+              </div>
             </SheetContent>
           </Sheet>
-          {/* <div className="hidden items-center gap-1 md:flex">
+          <div className="hidden items-center gap-1 md:flex">
             <Link
               to="/cart"
               aria-label="Cart"
@@ -226,17 +234,68 @@ export function TopNavigation() {
                 <span className="sr-only">{itemCount} items in cart</span>
               )}
             </Link>
-            <Link
-              to="/sign-in"
-              className={buttonVariants({ variant: "ghost", size: "sm" })}
-            >
-              {t("navigation.signIn")}
-            </Link>
-            <Link to="/sign-up" className={buttonVariants({ size: "sm" })}>
-              {t("navigation.signUp")}
-            </Link>
-          </div> */}
+            {!user && (
+              <>
+                <Link
+                  to="/sign-in"
+                  className={buttonVariants({ variant: "ghost", size: "sm" })}
+                >
+                  {t("navigation.signIn")}
+                </Link>
+                <Link to="/sign-up" className={buttonVariants({ size: "sm" })}>
+                  {t("navigation.signUp")}
+                </Link>
+              </>
+            )}
+          </div>
           <LanguageSelect />
+          {user && (
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                render={
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="overflow-hidden rounded-full"
+                    aria-label="Account menu"
+                  />
+                }
+              >
+                {typeof (user.user_metadata?.avatar_url ??
+                  user.user_metadata?.picture) === "string" ? (
+                  <img
+                    src={String(
+                      user.user_metadata?.avatar_url ??
+                        user.user_metadata?.picture
+                    )}
+                    alt=""
+                    className="size-full rounded-full object-cover"
+                  />
+                ) : (
+                  <span className="flex size-full items-center justify-center rounded-full bg-muted text-sm font-medium">
+                    {String(
+                      user.user_metadata?.full_name ??
+                        user.user_metadata?.name ??
+                        user.email ??
+                        "U"
+                    )
+                      .charAt(0)
+                      .toUpperCase()}
+                  </span>
+                )}
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-44">
+                <DropdownMenuItem render={<Link to="/profile" />}>
+                  <UserRound aria-hidden="true" />
+                  Profile
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => void signOut()}>
+                  <LogOut aria-hidden="true" />
+                  Logout
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
         </div>
       </div>
     </header>

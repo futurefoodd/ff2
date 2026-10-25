@@ -1,8 +1,8 @@
 import { Minus, Plus, ShoppingCart, ZoomIn } from "lucide-react"
 import { useState } from "react"
 import { Link, useParams } from "react-router-dom"
+import { toast } from "sonner"
 
-import { TopNavigation } from "@/components/top-navigation"
 import { Button, buttonVariants } from "@/components/ui/button"
 import {
   Card,
@@ -29,6 +29,7 @@ import {
 import { useProduct } from "@/hooks/use-products"
 import { ProductDetailSkeleton } from "@/components/product-skeletons"
 import { useCart } from "@/contexts/cart-context"
+import type { ProductDetailResponse } from "@/types/product-responses"
 
 function GalleryPlaceholder({ label }: { label: string }) {
   return (
@@ -58,12 +59,15 @@ function ProductDetail({ slug }: { slug: string | undefined }) {
   } = useProduct(slug)
   const { addItem } = useCart()
   const [quantity, setQuantity] = useState(1)
-  const [isAdded, setIsAdded] = useState(false)
+
+  const handleAddToCart = (product: ProductDetailResponse) => {
+    addItem(product, quantity)
+    toast(`${quantity} ${quantity === 1 ? "item has" : "items have"} been added to cart`)
+  }
 
   if (isPending || (error && product === undefined)) {
     return (
       <div className="min-h-svh bg-background">
-        <TopNavigation />
         <main className="mx-auto max-w-7xl px-6 py-12 lg:px-12">
           <Link to="/products" className="text-sm text-muted-foreground">
             ← Back to products
@@ -88,7 +92,6 @@ function ProductDetail({ slug }: { slug: string | undefined }) {
   if (!product) {
     return (
       <div className="min-h-svh bg-background">
-        <TopNavigation />
         <main className="mx-auto max-w-7xl px-6 py-20 lg:px-12">
           <Card className="max-w-xl rounded-3xl">
             <CardHeader>
@@ -110,7 +113,6 @@ function ProductDetail({ slug }: { slug: string | undefined }) {
 
   return (
     <div className="min-h-svh bg-background">
-      <TopNavigation />
       <main className="mx-auto max-w-7xl px-6 py-12 lg:px-12">
         <Link
           to="/products"
@@ -201,13 +203,10 @@ function ProductDetail({ slug }: { slug: string | undefined }) {
                 </div>
                 <Button
                   className="min-w-40"
-                  onClick={() => {
-                    addItem(product, quantity)
-                    setIsAdded(true)
-                  }}
+                  onClick={() => handleAddToCart(product)}
                 >
                   <ShoppingCart />
-                  {isAdded ? `Added (${quantity})` : "Add to cart"}
+                  Add to cart
                 </Button>
               </CardContent>
             </Card>

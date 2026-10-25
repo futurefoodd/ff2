@@ -22,6 +22,38 @@
     "upskill": "Tingkatkan kemahiran",
     "tour": "Lawatan"
   },
+  "auth": {
+    "returnHome": "Kembali ke laman utama Future Foods",
+    "email": "E-mel",
+    "emailPlaceholder": "anda@contoh.com",
+    "password": "Kata laluan",
+    "showPassword": "Tunjukkan kata laluan",
+    "hidePassword": "Sembunyikan kata laluan",
+    "confirmPassword": "Sahkan kata laluan",
+    "continueWith": "Atau teruskan dengan",
+    "legal": "Dengan meneruskan, anda bersetuju dengan <terms>Terma Perkhidmatan</terms> dan <privacy>Dasar Privasi</privacy> kami.",
+    "signIn": {
+      "title": "Selamat kembali",
+      "description": "Log masuk dengan e-mel dan kata laluan anda.",
+      "apple": "Log masuk dengan Apple",
+      "google": "Log masuk dengan Google",
+      "forgotPassword": "Lupa kata laluan?",
+      "submit": "Log masuk",
+      "noAccount": "Belum mempunyai akaun? <signUp>Daftar</signUp>"
+    },
+    "signUp": {
+      "title": "Cipta akaun anda",
+      "description": "Masukkan e-mel anda untuk mencipta akaun",
+      "emailDescription": "Kami akan menggunakan e-mel ini untuk menghubungi anda dan tidak akan berkongsinya dengan pihak lain.",
+      "passwordHint": "Kata laluan mestilah sekurang-kurangnya 8 aksara.",
+      "submit": "Cipta akaun",
+      "apple": "Daftar dengan Apple",
+      "google": "Daftar dengan Google",
+      "meta": "Daftar dengan Meta",
+      "hasAccount": "Sudah mempunyai akaun? <signIn>Log masuk</signIn>",
+      "imageAlt": "Rosel, durian belanda, bijirin dan pastil buah disusun sebagai gubahan kesejahteraan botani"
+    }
+  },
   "dynamic": {
     "decreaseQuantity": "Kurangkan kuantiti {{name}}",
     "increaseQuantity": "Tambah kuantiti {{name}}",

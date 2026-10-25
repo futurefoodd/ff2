@@ -1,9 +1,7 @@
-import { TopNavigation } from "@/components/top-navigation"
 
 export function TourPage() {
   return (
     <div className="min-h-svh bg-background text-foreground">
-      <TopNavigation />
       <main className="mx-auto max-w-6xl px-6 py-14 lg:py-20">
         <header className="max-w-2xl">
           <p className="text-sm font-semibold tracking-wide text-primary uppercase">

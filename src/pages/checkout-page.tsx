@@ -1,7 +1,5 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-
-import { TopNavigation } from "@/components/top-navigation"
 import { Button, buttonVariants } from "@/components/ui/button"
 import {
   Card,
@@ -23,7 +21,6 @@ export function CheckoutPage() {
   if (items.length === 0 && !isComplete)
     return (
       <div className="min-h-svh bg-background">
-        <TopNavigation />
         <main className="mx-auto max-w-7xl px-6 py-16 lg:px-12">
           <Card className="max-w-xl rounded-3xl">
             <CardHeader>
@@ -45,7 +42,6 @@ export function CheckoutPage() {
   if (isComplete)
     return (
       <div className="min-h-svh bg-background">
-        <TopNavigation />
         <main className="mx-auto max-w-7xl px-6 py-16 lg:px-12">
           <Card className="max-w-xl rounded-3xl">
             <CardHeader>
@@ -67,7 +63,6 @@ export function CheckoutPage() {
 
   return (
     <div className="min-h-svh bg-background">
-      <TopNavigation />
       <main className="mx-auto max-w-7xl px-6 py-16 lg:px-12">
         <h1 className="text-4xl font-semibold tracking-tight">Checkout</h1>
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_22rem]">

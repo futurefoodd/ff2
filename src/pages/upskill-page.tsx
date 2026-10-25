@@ -1,7 +1,5 @@
 import { Video } from "lucide-react"
 import { useState } from "react"
-
-import { TopNavigation } from "@/components/top-navigation"
 import { env } from "@/config/env"
 import { getPublicStorageUrl } from "@/services/storage"
 
@@ -28,7 +26,6 @@ export function UpskillPage() {
 
   return (
     <div className="min-h-svh bg-background text-foreground">
-      <TopNavigation />
       <main className="mx-auto max-w-5xl px-6 py-14 lg:py-20">
         <header className="max-w-2xl">
           <p className="text-sm font-semibold tracking-wide text-primary uppercase">

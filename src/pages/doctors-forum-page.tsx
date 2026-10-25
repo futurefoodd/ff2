@@ -1,6 +1,5 @@
 import { useState } from "react"
 
-import { TopNavigation } from "@/components/top-navigation"
 import { Button } from "@/components/ui/button"
 import { doctorsForumFormSchema } from "@/lib/doctors-forum-form-schema"
 
@@ -245,7 +244,6 @@ export function DoctorsForumPage() {
 
   return (
     <div className="min-h-svh bg-background text-foreground">
-      <TopNavigation />
       <main className="mx-auto max-w-4xl px-6 py-12 lg:py-16">
         <header className="max-w-3xl">
           <p className="text-sm font-medium text-muted-foreground">
