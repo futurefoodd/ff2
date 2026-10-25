@@ -1,6 +1,7 @@
 import { Minus, Plus, ShoppingCart, ZoomIn } from "lucide-react"
 import { useState } from "react"
 import { Link, useParams } from "react-router-dom"
+import { toast } from "sonner"
 
 import { Button, buttonVariants } from "@/components/ui/button"
 import {
@@ -28,6 +29,7 @@ import {
 import { useProduct } from "@/hooks/use-products"
 import { ProductDetailSkeleton } from "@/components/product-skeletons"
 import { useCart } from "@/contexts/cart-context"
+import type { ProductDetailResponse } from "@/types/product-responses"
 
 function GalleryPlaceholder({ label }: { label: string }) {
   return (
@@ -57,13 +59,11 @@ function ProductDetail({ slug }: { slug: string | undefined }) {
   } = useProduct(slug)
   const { addItem } = useCart()
   const [quantity, setQuantity] = useState(1)
-  // const [isAdded, setIsAdded] = useState(false)
 
   const handleAddToCart = (product: ProductDetailResponse) => {
-  addItem(product, quantity)
-  // setIsAdded(true)
-  toast(`${quantity} items has been Added to cart`)
-}
+    addItem(product, quantity)
+    toast(`${quantity} ${quantity === 1 ? "item has" : "items have"} been added to cart`)
+  }
 
   if (isPending || (error && product === undefined)) {
     return (
@@ -203,10 +203,7 @@ function ProductDetail({ slug }: { slug: string | undefined }) {
                 </div>
                 <Button
                   className="min-w-40"
-                  onClick={() => {
-                    addItem(product, quantity)
-                    setIsAdded(true)
-                  }}
+                  onClick={() => handleAddToCart(product)}
                 >
                   <ShoppingCart />
                   Add to cart
