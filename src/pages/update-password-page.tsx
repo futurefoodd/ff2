@@ -17,7 +17,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import { useAuth } from "@/contexts/auth"
+import { useAuth } from "@/contexts/auth-context"
 import { z } from "zod"
 import { Eye, EyeOff } from "lucide-react"
 

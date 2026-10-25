@@ -20,7 +20,7 @@ import {
   FieldSeparator,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import { useAuth } from "@/contexts/auth"
+import { useAuth } from "@/contexts/auth-context"
 import { cn } from "@/lib/utils"
 import { z } from "zod"
 

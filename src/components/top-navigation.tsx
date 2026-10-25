@@ -27,7 +27,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { useAuth } from "@/contexts/auth"
+import { useAuth } from "@/contexts/auth-context"
 
 const navigationItems = [
   "home",

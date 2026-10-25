@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { useAuth } from "@/contexts/auth"
+import { useAuth } from "@/contexts/auth-context"
 
 export function ProfilePage() {
   const { user } = useAuth()
