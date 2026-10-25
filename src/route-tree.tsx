@@ -14,6 +14,8 @@ import { ProductDetailPage } from "@/pages/product-detail-page"
 import { ProductsPage } from "@/pages/products-page"
 import { SignInPage } from "@/pages/sign-in-page"
 import { SignUpPage } from "@/pages/sign-up-page"
+import { ForgotPasswordPage } from "@/pages/forgot-password-page"
+import { UpdatePasswordPage } from "@/pages/update-password-page"
 import { TourPage } from "@/pages/tour-page"
 import { UpskillPage } from "@/pages/upskill-page"
 import { SiteLayout } from "@/layout/site-layout"
@@ -27,7 +29,6 @@ export const routeTree = [
       {
         Component: SiteLayout,
         children: [
-
           { index: true, Component: HomePage },
           { path: "home", Component: HomePage },
           { path: "products", Component: ProductsPage },
@@ -45,13 +46,13 @@ export const routeTree = [
             children: [
               { path: "sign-in", Component: SignInPage },
               { path: "sign-up", Component: SignUpPage },
-            ]
+              { path: "forgot-password", Component: ForgotPasswordPage },
+            ],
           },
+          { path: "update-password", Component: UpdatePasswordPage },
           {
             Component: RequireAuth,
-            children: [
-              { path: "profile", Component: ProfilePage },
-            ]
+            children: [{ path: "profile", Component: ProfilePage }],
           },
           { path: "consultations", Component: ConsultationsPage },
           { path: "doctors-forum", Component: DoctorsForumPage },
@@ -59,17 +60,15 @@ export const routeTree = [
           { path: "tour", Component: TourPage },
           { path: "upskill", Component: UpskillPage },
           { path: "*", Component: PageNotFound },
-        ]
+        ],
       },
       {
         Component: CheckoutLayout,
         children: [
           { path: "cart", Component: CartPage },
           { path: "checkout", Component: CheckoutPage },
-
-        ]
-      }
+        ],
+      },
     ],
-
   },
 ] satisfies RouteObject[]

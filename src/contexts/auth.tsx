@@ -1,14 +1,14 @@
 import type { Provider, Session, User } from "@supabase/supabase-js"
-import { supabase } from "../lib/supabase"
-
 import {
   createContext,
   useContext,
-  useState,
   useEffect,
+  useState,
   type ReactNode,
 } from "react"
+
 import { LoadingScreen } from "@/components/loading-screen"
+import { supabase } from "@/lib/supabase"
 
 type AuthContextValue = {
   user: User | null
@@ -22,6 +22,12 @@ type AuthContextValue = {
     email: string,
     password: string
   ) => ReturnType<typeof supabase.client.auth.signInWithPassword>
+  requestPasswordReset: (
+    email: string
+  ) => ReturnType<typeof supabase.client.auth.resetPasswordForEmail>
+  updatePassword: (
+    password: string
+  ) => ReturnType<typeof supabase.client.auth.updateUser>
   signInWithProvider: (
     provider: Provider
   ) => ReturnType<typeof supabase.client.auth.signInWithOAuth>
@@ -72,38 +78,49 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, [])
 
-
- const signUpWithPassword = (email: string, password: string) => {
-  return supabase.client.auth.signUp({
+  const signUpWithPassword: AuthContextValue["signUpWithPassword"] = (
     email,
-    password,
-  })
-}
+    password
+  ) =>
+    supabase.client.auth.signUp({
+      email,
+      password,
+    })
 
- const signInWithPassword = (email: string, password: string) => {
-  return supabase.client.auth.signInWithPassword({
+  const signInWithPassword: AuthContextValue["signInWithPassword"] = (
     email,
-    password,
-  })
-}
+    password
+  ) =>
+    supabase.client.auth.signInWithPassword({
+      email,
+      password,
+    })
 
- const signInWithProvider = (provider: Provider) => {
-  return supabase.client.auth.signInWithOAuth({
-    provider,
-    options: {
-      redirectTo: window.location.origin,
-      queryParams: {
-      prompt: "select_account",
-    },
-    },
-  })
-}
+  const requestPasswordReset: AuthContextValue["requestPasswordReset"] = (
+    email
+  ) =>
+    supabase.client.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/update-password`,
+    })
 
- const signOut = () => {
-    return  supabase.client.auth.signOut()
-  }
+  const updatePassword: AuthContextValue["updatePassword"] = (password) =>
+    supabase.client.auth.updateUser({ password })
 
-return (
+  const signInWithProvider: AuthContextValue["signInWithProvider"] = (
+    provider
+  ) =>
+    supabase.client.auth.signInWithOAuth({
+      provider,
+      options: {
+        redirectTo: window.location.origin,
+        queryParams: { prompt: "select_account" },
+      },
+    })
+
+  const signOut: AuthContextValue["signOut"] = () =>
+    supabase.client.auth.signOut()
+
+  return (
     <AuthContext.Provider
       value={{
         user: session?.user ?? null,
@@ -111,10 +128,12 @@ return (
         loading,
         signUpWithPassword,
         signInWithPassword,
+        requestPasswordReset,
+        updatePassword,
         signInWithProvider,
-        signOut
+        signOut,
       }}
-      >
+    >
       {loading ? <LoadingScreen /> : children}
     </AuthContext.Provider>
   )
@@ -122,7 +141,6 @@ return (
 
 export function useAuth() {
   const context = useContext(AuthContext)
-  console.log(context)
   if (!context) {
     throw new Error("useAuth must be used inside an AuthProvider")
   }
