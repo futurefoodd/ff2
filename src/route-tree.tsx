@@ -5,6 +5,7 @@ import { BioTherapeuticsNeurodivergencePage } from "@/pages/bio-therapeutics-neu
 import { CartPage } from "@/pages/cart-page"
 import { CheckoutPage } from "@/pages/checkout-page"
 import { PageNotFound } from "@/pages/page-not-found"
+import { ProfilePage } from "@/pages/profile-page"
 import { ConsultationsPage } from "@/pages/consultations-page"
 import { DoctorsForumPage } from "@/pages/doctors-forum-page"
 import { DualTherapyPage } from "@/pages/dual-therapy-page"
@@ -17,6 +18,7 @@ import { TourPage } from "@/pages/tour-page"
 import { UpskillPage } from "@/pages/upskill-page"
 import { SiteLayout } from "@/layout/site-layout"
 import { CheckoutLayout } from "@/layout/checkout-layout"
+import { GuestOnly, RequireAuth } from "@/components/authGuard"
 
 export const routeTree = [
   {
@@ -38,8 +40,19 @@ export const routeTree = [
             path: "gut-brain-axis-probiotics",
             Component: GutBrainAxisProbioticsPage,
           },
-          { path: "sign-in", Component: SignInPage },
-          { path: "sign-up", Component: SignUpPage },
+          {
+            Component: GuestOnly,
+            children: [
+              { path: "sign-in", Component: SignInPage },
+              { path: "sign-up", Component: SignUpPage },
+            ]
+          },
+          {
+            Component: RequireAuth,
+            children: [
+              { path: "profile", Component: ProfilePage },
+            ]
+          },
           { path: "consultations", Component: ConsultationsPage },
           { path: "doctors-forum", Component: DoctorsForumPage },
           { path: "dual-therapy", Component: DualTherapyPage },
