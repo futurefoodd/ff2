@@ -13,12 +13,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     let initialized = false
     let receivedAuthEvent = false
-    let isMounted = true
-    let minimumLoadingTimer: number | undefined
-
-    const minimumLoadingTime = new Promise<void>((resolve) => {
-      minimumLoadingTimer = window.setTimeout(resolve, 2_000)
-    })
 
     const {
       data: { subscription },
@@ -28,11 +22,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (initialized) setLoading(false)
     })
 
-    void Promise.all([
-      supabase.client.auth.getSession(),
-      minimumLoadingTime,
-    ]).then(([{ data, error }]) => {
-      if (!isMounted) return
+    void Promise.resolve(
+      supabase.client.auth.getSession()
+    ).then(({ data, error }) => {
       if (error) console.error("Could not load session", error)
       if (!receivedAuthEvent) setSession(data.session)
       initialized = true
@@ -40,10 +32,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     })
 
     return () => {
-      isMounted = false
-      if (minimumLoadingTimer !== undefined) {
-        window.clearTimeout(minimumLoadingTimer)
-      }
       subscription.unsubscribe()
     }
   }, [])
